@@ -1,4 +1,6 @@
 import { StyleSheet, Text, View, ScrollView, StatusBar, SafeAreaView, Platform} from 'react-native';
+import {Button} from 'react-native-web'
+import Splash from '../Splash';
 
 const statusBarHeight = StatusBar.currentHeight;
 
@@ -10,8 +12,7 @@ export default function Home() {
           <Text>Conteúdo</Text>
         </View>
 
-       
-        
+
       </ScrollView>
 
     </SafeAreaView>

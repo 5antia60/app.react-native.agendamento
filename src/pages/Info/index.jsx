@@ -11,7 +11,7 @@ export default function Info() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#040316',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
