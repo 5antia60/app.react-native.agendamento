@@ -2,15 +2,57 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   login: {
+    position: 'absolute',
     width: '100%',
     height: '100%',
-  },
-  formArea: {
+  },  
+  design_logo: {
+    backgroundColor: 'blue',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
+    maxHeight: '25%',
+    height: '25%'
+
+  },
+  botoes: {
+    backgroundColor: 'blue',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    maxHeight: '25%',
+    height: '25%',
+
+    login: {
+      color: 'white',
+      fontSize: '20px',
+      padding: '10px 60px',
+      borderRadius: '5px',
+      margin: '10px 0px',
+      cursor: 'pointer'
+    },
+    cadastrar: {
+      color: 'white',
+      fontSize: '20px',
+      padding: '10px 60px',
+      borderRadius: '5px',
+      margin: '10px 0px',
+      cursor: 'pointer'
+    },
+    
+  },
+  formArea: {
+    backgroundColor: 'red',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
 
     width: '100%',
+    height: '50%',
+    maxHeight: '50%',
 
     padding: '1rem',
 
@@ -22,13 +64,13 @@ export default StyleSheet.create({
 
     inputArea: {
       backgroundColor: '#D9D9D9',
-      height: '2rem',
+      height: '3rem',
       width: '100%',
-      marginTop: '0.5rem',
-      borderRadius: '5px',
+      marginTop: '1rem',
+      borderRadius: '10px',
       paddingLeft: '1rem',
       paddingRight: '1rem',
-      color: '#3B8952',
+      color: '#76AC86',
       fontWeight: '700',
     }
   }
