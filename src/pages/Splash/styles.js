@@ -2,23 +2,22 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   main: {
-    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     width: '100%',
     height: '100%',
   },
 
   top: {
-    backgroundColor: 'red',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    maxHeight: '80%',
-    height: '70%',
 
     image: {
-      width: 100,
-      height: 100,
-      backgroundColor: 'black'
+      width: '10rem',
+      height: '5rem',
+      objectFit: 'cover'
     },
   },
 
@@ -27,10 +26,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    maxHeight: '30%',
-    height: '30%',
+    height: '22rem',
     width: '100%',
-    // backgroundColor: 'blue'
+    image3: {
+      width: '100%',
+      height: '100%',
+      marginBottom: '-1rem',
+    },
   
   }
   
