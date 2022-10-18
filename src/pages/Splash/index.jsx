@@ -8,6 +8,8 @@ export default function Splash() {
   return (
     <View style={styles.main}>
 
+      <View></View>
+
       <View style={styles.top}>
         <Image style={styles.top.image}
         source={require('../../assets/logo_design.svg')} 
@@ -18,6 +20,8 @@ export default function Splash() {
         
         <Image style={styles.footer.image2}
         source={require('../../assets/construtora.svg')} />
+        <Image style={styles.footer.image3}
+        source={require('../../assets/Plano-splash.svg')} />
       </View>
     </View>
     
