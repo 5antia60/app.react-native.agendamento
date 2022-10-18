@@ -1,15 +1,13 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from 'react-navigation-stack'
+
 import Home from "./pages/Home";
 import Info from "./pages/Info";
 import Historico from "./pages/Historico";
-import Login from './pages/Login/';
-import Splash from "./pages/Splash";
-import { TabBarIOSItem } from 'react-native';
-import Icon from 'react-native-vector-icons';
+import Reuniao from './pages/Reuniao';
 
-import { Entypo } from '@expo/vector-icons'; 
+import { Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { View } from 'react-native';
+// import LinearGradient from 'react-native-linear-gradient';
  
 const Tab = createBottomTabNavigator();
 
@@ -17,17 +15,20 @@ function Routes() {
   return(
     <Tab.Navigator
       screenOptions={{
+        tabBarActiveTintColor: '#3B8952',
+        tabBarInactiveTintColor: '#03484C',
         tabBarShowLabel: true,
         tabBarStyle: {
           position: 'absolute',
-          backgroundColor: 'white',
+          backgroundColor: '#fff',
           borderTopWidth: 0,
 
           bottom: 0,
-          left: 0,
-          right: 0,
-          borderTopRightRadius: 0,
-          borderTopLeftRadius: 0,
+          left: 10,
+          right: 10,
+          borderRadius: 0,
+          borderTopRightRadius: 15,
+          borderTopLeftRadius: 15,
           height: 60,
 
           shadowColor: "black",
@@ -47,30 +48,51 @@ function Routes() {
         component={Info}
         name="Info"
         options={{
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({ color, size, focused }) => {
             if(focused) {
-              return <Entypo name='info' size={size} color={color} />
+              return <FontAwesome name='info-circle' size={size} color={color} />
             }
 
-            return <Entypo name='info' size={size} color={color} />
+            return <FontAwesome name='info' size={size} color={color} />
           }
         }}
       />
 
       <Tab.Screen 
-        component={Home}
-        name="Home" 
+        component={Reuniao}
+        name="Nova Reunião" 
       />
 
       <Tab.Screen 
         component={Home}
         name="Home" 
+        options={{
+          tabBarLabel: "",
+          headerShown: false,
+          tabBarIcon: ({ color, size, focused }) => {
+            if(focused) {
+              return <FontAwesome name='home' size={size} color={color} />
+            }
+
+            return <FontAwesome name='home' size={size} color={color} />
+          }
+        }}
       />
 
       <Tab.Screen 
         component={Historico}
-        name="Historico"
+        name="Reuniões antigas"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size, focused }) => {
+            if(focused) {
+              return <FontAwesome name='history' size={size} color={color} />
+            }
+
+            return <FontAwesome name='history' size={size} color={color} />
+          }
+        }}
       />
     </Tab.Navigator>
   )

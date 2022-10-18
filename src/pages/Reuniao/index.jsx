@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Info() {
+export default function Reuniao() {
   return (
     <View style={styles.container}>
-      <Text>Página de Informações</Text>
+      <Text>Página de Nova Reunião</Text>
     </View>
   );
 }
