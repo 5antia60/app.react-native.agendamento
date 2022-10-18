@@ -21,7 +21,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#040316',
+    backgroundColor: '#fff',
     paddingTop: Platform.OS === 'android' ? statusBarHeight : 25,
   },
   content:{

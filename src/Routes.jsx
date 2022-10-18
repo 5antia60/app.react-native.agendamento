@@ -13,9 +13,20 @@ const Tab = createBottomTabNavigator();
 function Routes() {
   return(
     <Tab.Navigator>
-      <Tab.Screen>
-        
-      </Tab.Screen>
+      <Tab.Screen 
+        component={Home}
+        name="Home"
+      />
+
+      <Tab.Screen 
+        component={Info}
+        name="Info"
+      />
+
+      <Tab.Screen 
+        component={Historico}
+        name="Historico"
+      />
     </Tab.Navigator>
   )
 }
