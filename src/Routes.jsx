@@ -6,15 +6,18 @@ import Historico from "./pages/Historico";
 import Reuniao from './pages/Reuniao';
 
 import { Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons';
-import { View } from 'react-native';
-// import LinearGradient from 'react-native-linear-gradient';
- 
+import { Button, StyleSheet } from 'react-native';
+
+import { LinearGradient } from 'expo-linear-gradient';
+
 const Tab = createBottomTabNavigator();
 
 function Routes() {
   return(
-    <Tab.Navigator
+    <Tab.Navigator component={Home}
+      initialRouteName="Home"
       screenOptions={{
+        initialRouteName: 'Home',
         tabBarActiveTintColor: '#3B8952',
         tabBarInactiveTintColor: '#03484C',
         tabBarShowLabel: true,
@@ -43,12 +46,12 @@ function Routes() {
         }
       }}
     >
-
+      
       <Tab.Screen 
         component={Info}
         name="Info"
         options={{
-          headerShown: true,
+          headerShown: false,
           tabBarIcon: ({ color, size, focused }) => {
             if(focused) {
               return <FontAwesome name='info-circle' size={size} color={color} />
@@ -61,12 +64,33 @@ function Routes() {
 
       <Tab.Screen 
         component={Reuniao}
-        name="Nova Reunião" 
+        
+        name="Nova Reunião"
+        options={{
+          tabBarLabel: "",
+          headerShown: true,
+          tabBarIcon: ({ color, size, focused }) => {
+            if(focused) {
+              return (  
+                  <LinearGradient onPress={() => navigation.navigate('Home')} style={styles.iconTabRound} start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }} colors={['#3B8952', '#03484C']}>
+                    <Entypo name="home" size={30} color='#FFF'/>
+                  </LinearGradient>
+              )
+            } 
+
+            return (
+              <LinearGradient style={styles.iconTabRound} start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }} colors={['#3B8952', '#03484C']}>
+                <Entypo name="plus" size={30} color='#FFF'/>
+              </LinearGradient>
+            )
+          }
+        }}
       />
 
       <Tab.Screen 
         component={Home}
         name="Home" 
+        
         options={{
           tabBarLabel: "",
           headerShown: false,
@@ -84,7 +108,7 @@ function Routes() {
         component={Historico}
         name="Reuniões antigas"
         options={{
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({ color, size, focused }) => {
             if(focused) {
               return <FontAwesome name='history' size={size} color={color} />
@@ -97,6 +121,23 @@ function Routes() {
     </Tab.Navigator>
   )
 }
+
+const styles = StyleSheet.create({
+	iconTabRound: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginBottom: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 6,
+    shadowColor: '#9C27B0',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+  }
+});
 
 // const Routes = createAppContainer(
 //   createStackNavigator({

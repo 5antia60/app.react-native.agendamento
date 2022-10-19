@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
-export default function Historico() {
+export default function Historico({navigation}) {
   return (
     <View style={styles.container}>
       <Text>Pagina do Histórico de Reuniões</Text>
+      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
     </View>
   );
 }

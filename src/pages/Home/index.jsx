@@ -7,13 +7,22 @@ const statusBarHeight = StatusBar.currentHeight;
 export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.content}>
-          <Text>Conteúdo</Text>
+        <View style={styles.main}>
+
+            {/* <View style={styles.top}>
+                <Image style={styles.top.image}
+                source={require('../../assets/FundoHome.svg')} 
+                />
+            </View> */}
+
+            <ScrollView>
+                <View style={styles.content}>
+                    <Text>Conteúdo</Text>
+                </View>
+
+
+            </ScrollView>
         </View>
-
-
-      </ScrollView>
 
     </SafeAreaView>
   );
