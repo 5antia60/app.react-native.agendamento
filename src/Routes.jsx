@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Info from "./pages/Info";
 import Historico from "./pages/Historico";
 import Reuniao from './pages/Reuniao';
+import Splash from './pages/Splash';
 
 import { Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import { Button, StyleSheet } from 'react-native';
@@ -105,7 +106,7 @@ function Routes() {
       />
 
       <Tab.Screen 
-        component={Historico}
+        component={Splash}
         name="Reuniões antigas"
         options={{
           headerShown: true,
