@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, ScrollView, StatusBar, SafeAreaView, Platform} 
 import {Button, Image} from 'react-native-web';
 const statusBarHeight = StatusBar.currentHeight;
 
-export default function Home() {
+export default function Home({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
         <View style={styles.main}>
@@ -16,7 +16,7 @@ export default function Home() {
             <ScrollView>
                 <View style={styles.content}>
                     <Text>Conteúdo</Text>
-                    
+                    {/* <Button title="Go to Info" onPress={() => navigation.navigate('Historico')} /> */}
                 </View>
 
 
@@ -30,7 +30,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f1f1f1',
+    backgroundColor: '#fff',
     paddingTop: Platform.OS === 'android' ? statusBarHeight : 25,
   },
   content:{

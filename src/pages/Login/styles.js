@@ -63,7 +63,9 @@ export default StyleSheet.create({
     },
 
     inputArea: {
-      backgroundColor: '#D9D9D9',
+      flexDirection: 'row',
+      backgroundColor: 'yellow',
+      alignItems: 'center',
       height: '3rem',
       width: '100%',
       marginTop: '1rem',
@@ -72,6 +74,39 @@ export default StyleSheet.create({
       paddingRight: '1rem',
       color: '#76AC86',
       fontWeight: '700',
+    },
+
+    inputSenha: {
+      flexDirection: 'row',
+      backgroundColor: 'yellow',
+      alignItems: 'center',
+      height: '3rem',
+      width: '100%',
+      marginTop: '1rem',
+      borderRadius: '10px',
+      
+    },
+
+    input: {
+      borderRadius: '10px',
+      width: '85%',
+      height: '3rem', 
+      color: '#76AC86',
+      backgroundColor: 'yellow',
+      color: '#76AC86',
+      fontWeight: '700',
+      paddingLeft: '1rem',
+      paddingRight: '1rem',
+    },
+
+    icon: {
+      width: '15%',
+      height: '3rem',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'green',
+      borderRadius: '10px',
     }
+
   }
 });

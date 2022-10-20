@@ -1,5 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
 
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+
 import Home from "./pages/Home";
 import Info from "./pages/Info";
 import Historico from "./pages/Historico";
@@ -11,6 +13,7 @@ import { Button, StyleSheet } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 
+const Pilha = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function Routes() {
@@ -48,7 +51,7 @@ function Routes() {
       }}
     >
       
-      <Tab.Screen 
+      {/* <Tab.Screen 
         component={Info}
         name="Info"
         options={{
@@ -59,6 +62,23 @@ function Routes() {
             }
 
             return <FontAwesome name='info' size={size} color={color} />
+          }
+        }}
+      /> */}
+
+      <Tab.Screen 
+        component={Home}
+        name="Home" 
+        
+        options={{
+          tabBarLabel: "",
+          headerShown: false,
+          tabBarIcon: ({ color, size, focused }) => {
+            if(focused) {
+              return <FontAwesome name='home' size={size} color={color} />
+            }
+
+            return <FontAwesome name='home' size={size} color={color} />
           }
         }}
       />
@@ -89,24 +109,7 @@ function Routes() {
       />
 
       <Tab.Screen 
-        component={Home}
-        name="Home" 
-        
-        options={{
-          tabBarLabel: "",
-          headerShown: false,
-          tabBarIcon: ({ color, size, focused }) => {
-            if(focused) {
-              return <FontAwesome name='home' size={size} color={color} />
-            }
-
-            return <FontAwesome name='home' size={size} color={color} />
-          }
-        }}
-      />
-
-      <Tab.Screen 
-        component={Splash}
+        component={Historico}
         name="Reuniões antigas"
         options={{
           headerShown: true,
