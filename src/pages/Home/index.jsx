@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { auth } from '../../../firebase'
 import { useNavigation } from '@react-navigation/native'
-import Login from '../Login'
 
 const Home = () => {
   const navigation  = useNavigation()
@@ -19,6 +18,15 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
+      <Button title="Go to Splash" 
+        onPress={
+          () => navigation.navigate("Splash")//replace or navigate
+        } />
+
+        <Button title="Go to Pessoas" 
+        onPress={
+          () => navigation.navigate("Pessoa")//replace or navigate
+        } />
       <Text>Email: {auth.currentUser?.email}</Text>
       <TouchableOpacity
         onPress={handleSignOut}

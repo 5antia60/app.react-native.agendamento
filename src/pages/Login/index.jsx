@@ -1,12 +1,13 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { KeyboardAvoidingView, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { auth } from '../../../firebase'
 // import { useNavigation } from '@react-navigation/core'
 import { useNavigation } from '@react-navigation/native'
+import fundoSusten from '../../assets/fundo-susten.webp'
 
 const Login = () => {
-  const [email, setEmail ] = useState('')
+  const [email, setEmail ] = useState('danilosataide@gmail.com')
   const [password, setPassword] = useState('')
 
   const navigation  = useNavigation()
@@ -46,6 +47,7 @@ const Login = () => {
       style={styles.container}
       behavior="padding"
     >
+      <ImageBackground source={fundoSusten} resizeMode="cover" style={styles.image}>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="E-mail"
@@ -77,6 +79,8 @@ const Login = () => {
           <Text style={styles.buttonOutlineText}>Registrar</Text>
         </TouchableOpacity>
       </View>
+      </ImageBackground>
+
     </KeyboardAvoidingView>
   )
 }
@@ -89,20 +93,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  image: {
+    width: '100%',
+    flex: 1,
+    justifyContent: "center",
+    alignItems: 'center'
+  },
   inputContainer: {
-    width: '80%'
+    width: '80%',
+    
   },
   input: {
     backgroundColor: 'white',
+    width: '100%',
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 10,
     marginTop: 5
   },
   buttonContainer: {
-    width: '60%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: '80%',
     marginTop: 40
   },
   button: {
