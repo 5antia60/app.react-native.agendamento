@@ -8,7 +8,6 @@ import Login from './src/pages/Login';
 import Home from './src/pages/Home';
 import Splash from './src/pages/Splash';
 import Pessoa from './src/pages/Pessoa';
-import PessoaCRUD from './src/pages/Pessoa/Pessoa CRUD';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -23,8 +22,8 @@ export default function App() {
 
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName="PessoaCRUD">
-        <Stack.Screen option={{ headerShown: false }} name="PessoaCRUD" component={PessoaCRUD} />
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen option={{ headerShown: false }} name="Login" component={Login} />
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Pessoa" component={Pessoa} />

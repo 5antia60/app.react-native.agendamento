@@ -22,17 +22,19 @@ const firebaseConfig = {
 // Initialize Firebase
 let app;
 let db;
+let database;
 if(firebase.apps.length === 0){
     app = firebase.initializeApp(firebaseConfig);
 
     // Firestore Reference
     db = getFirestore(app);
+    database = db;
 } else {
     app = firebase.app()
 }
-
+// const database = firebase.firestore();
 const auth = firebase.auth()
 
-export {auth, db}; 
+export {auth, db, database}; 
 // const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);

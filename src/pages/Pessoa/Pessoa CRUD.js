@@ -1,8 +1,9 @@
 import { deleteDoc, collection, doc, getDoc, setDoc, addDoc } from 'firebase/firestore';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 // Using DB Reference
 import { db } from '../../../firebase';
+import { database } from '../../../firebase';
 
 export default function PessoaCRUD() {
   // Storing User Data
@@ -48,7 +49,6 @@ export default function PessoaCRUD() {
         // MARK: Success
         if (snapshot.exists) {
           setUserDoc(snapshot.data())
-          console.log(userDoc)
         }
         else {
           alert("No Doc Found")
