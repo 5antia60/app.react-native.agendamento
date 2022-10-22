@@ -63,13 +63,17 @@ export default function Pessoa() {
         title={idToEdit ? 'Editar Pessoa' : 'Adicionar Pessoa'}
         onPress={async () => {
           if (idToEdit) {
-            setDoc(myDoc, idToEdit, formPessoas)
-              .then(() => {
-                alert("Alterações salvas!")
-              })
-              .catch((error) => {
-                alert(error.message)
-              })
+            setDoc(doc(db, "Pessoa", idToEdit), {
+              nome: formPessoas.nome,
+              email: formPessoas.email,
+              celular: formPessoas.celular,
+            },{merge:true})
+            .then(() => {
+              alert("Alterações salvas!")
+            })
+            .catch((error) => {
+              alert(error.message)
+            });
             
             pessoas.forEach((pessoa, index) => {
               if (pessoa.id === idToEdit)
