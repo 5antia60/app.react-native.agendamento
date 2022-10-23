@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native'
 import { auth } from '../../../firebase'
 // import { useNavigation } from '@react-navigation/core'
 import { useNavigation } from '@react-navigation/native'
-import fundoSusten from '../../assets/fundo-susten.webp'
+import fundoSusten from '../../assets/fundo_susten.webp'
 
 const Login = () => {
   const [email, setEmail ] = useState('danilosataide@gmail.com')

@@ -16,7 +16,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 const Pilha = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function Routes() {
+function Rotas() {
   return(
     <Tab.Navigator component={Home}
       initialRouteName="Home"
@@ -150,4 +150,4 @@ const styles = StyleSheet.create({
 //   })
 // );
 
-export default Routes;
+export default Rotas;

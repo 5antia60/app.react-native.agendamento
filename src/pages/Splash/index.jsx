@@ -1,6 +1,5 @@
 import { Text, View, Image, ImageBackground } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import Logo from '../../assets/logo_design.png';
 import styles from "./styles";
 
 export default function Splash() {

@@ -13,6 +13,7 @@ export default StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
 
     image: {
       width: '10rem',
@@ -22,13 +23,15 @@ export default StyleSheet.create({
   },
 
   footer: {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '22rem',
+    height: '100%',
     width: '100%',
     image3: {
+      position: 'relative',
       width: '100%',
       height: '100%',
       marginBottom: '-1rem',
