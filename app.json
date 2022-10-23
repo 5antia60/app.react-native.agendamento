@@ -1,15 +1,16 @@
 {
   "expo": {
-    "name": "app.reactNative.agendamento",
-    "slug": "app.reactNative.agendamento",
+    "name": "Meeting Mobile",
+    "slug": "danio-ataide",
+    "owner": "danilosataide",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.svg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo.svg",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#14750D"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -27,7 +28,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo.png"
     }
   }
 }

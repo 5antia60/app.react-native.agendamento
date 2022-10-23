@@ -12,7 +12,7 @@ export default function Welcome() {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image}>
-        <Image source={{uri:'https://www.construtoraplaneta.com.br/wp-content/themes/planeta/imagens/logo.svg'}} 
+        <Animatable.Image  source={{uri:'https://www.construtoraplaneta.com.br/wp-content/themes/planeta/imagens/logo.svg'}} 
           style={styles.imageSecondary} resizeMode="contain"
         />
       <View style={styles.containerLogo}>
@@ -29,7 +29,7 @@ export default function Welcome() {
           
       <Animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
         <Text style={styles.title}>
-          Gerencie suas reuniões de qualquer lugar!
+          Organize e gerencie suas reuniões de trabalho!
         </Text>
         <Text style={styles.text}>
           Faça o login para começar
