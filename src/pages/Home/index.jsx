@@ -11,7 +11,7 @@ const Home = () => {
     auth  
       .signOut()
       .then(() => {
-        navigation.replace("Login")
+        navigation.replace("SignIn")
       })
       .catch(error => alert(error.message))
   }

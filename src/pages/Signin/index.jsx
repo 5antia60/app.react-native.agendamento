@@ -1,19 +1,54 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet , TextInput, TouchableOpacity, ImageBackground, Image } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { KeyboardAvoidingView, View, Text, StyleSheet , TextInput, TouchableOpacity, ImageBackground, Image } from 'react-native'
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { IconButton, Ionicons } from '@react-native-material/core';
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
+import { auth } from '../../../firebase';
 import LogoPlaneta from '../../assets/logoPlaneta.png';
 
 export default function SignIn() {
+  const [email, setEmail ] = useState('')
+  const [password, setPassword] = useState('')
+
   const [input, setInput] = useState('');
   const [hidePass, setHidePass] = useState(true);
 
   const image = { uri: "https://www.construtoraplaneta.com.br/wp-content/uploads/2022/01/fundo-sus-02.jpg" };
   const navigation  = useNavigation()
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if(user){
+        navigation.replace("Home")//replace or navigate
+      }
+    })
+
+    return unsubscribe
+  }, [])
+
+  const handleSignUp = () => {
+    auth
+    .createUserWithEmailAndPassword(email, password)
+    .then(userCredentials => {
+      const user = userCredentials.user;
+      console.log('Registrado com: ', user.email);
+    })
+    .catch(error => alert(error.message))
+  }
+
+  const handleLogin = () => {
+    console.log(password)
+    auth
+    .signInWithEmailAndPassword(email, password)
+    .then(userCredentials => {
+      const user = userCredentials.user;
+      console.log('Logado com: ', user.email);
+    })
+    .catch(error => alert(error.message))
+  }
 
   return (
     <View style={styles.container}>
@@ -29,6 +64,8 @@ export default function SignIn() {
         {/* <Text style={styles.title}>E-mail</Text> */}
         <TextInput 
           placeholder="E-mail"
+          value={email}
+          onChangeText={text => setEmail(text)}
           style={styles.input}
         />
 
@@ -40,8 +77,8 @@ export default function SignIn() {
           <TextInput 
             placeholder="Senha"
             style={styles.inputSenhaText}
-            value={input}
-            onChangeText={ (texto) => setInput(texto) }
+            value={password}
+            onChangeText={text => setPassword(text)}
             secureTextEntry={hidePass}
           />
           <IconButton 
@@ -56,11 +93,17 @@ export default function SignIn() {
         </View>
 
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity 
+          onPress={handleLogin} 
+          style={styles.button}
+        >
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonRegister}>
+        <TouchableOpacity 
+          onPress={handleSignUp}
+          style={styles.buttonRegister}
+        >
           <Text style={styles.registerText}>Cadastre-se</Text>
         </TouchableOpacity>
         
@@ -104,6 +147,7 @@ const styles = StyleSheet.create({
   input: {
     borderBottomWidth: 0,
     height: 50,
+    width: '100%',
     color: 'black',//#3B8952
     fontWeight: 'normal',
     marginBottom: 12,
@@ -117,6 +161,7 @@ const styles = StyleSheet.create({
   inputSenha: {
     borderBottomWidth: 0,
     height: 50,
+    width: '100%',
     color: 'black',//#3B8952
     fontWeight: 'normal',
     marginBottom: 12,

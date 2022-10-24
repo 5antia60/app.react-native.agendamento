@@ -143,11 +143,4 @@ const styles = StyleSheet.create({
   }
 });
 
-// const Routes = createAppContainer(
-//   createStackNavigator({
-//     Login: Login,
-//     Splash: Splash,
-//   })
-// );
-
 export default Rotas;
