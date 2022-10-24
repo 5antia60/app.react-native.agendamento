@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet , TextInput, TouchableOpacity, ImageBackground, Image } from 'react-native'
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
-import { IconButton } from '@react-native-material/core';
+import { IconButton, Ionicons } from '@react-native-material/core';
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
 import LogoPlaneta from '../../assets/logoPlaneta.png';
 
 export default function SignIn() {
+  const [input, setInput] = useState('');
+  const [hidePass, setHidePass] = useState(true);
+
   const image = { uri: "https://www.construtoraplaneta.com.br/wp-content/uploads/2022/01/fundo-sus-02.jpg" };
   const navigation  = useNavigation()
 
@@ -37,9 +40,19 @@ export default function SignIn() {
           <TextInput 
             placeholder="Senha"
             style={styles.inputSenhaText}
+            value={input}
+            onChangeText={ (texto) => setInput(texto) }
+            secureTextEntry={hidePass}
           />
-          <IconButton style={styles.icon} icon={props => <FontAwesome name="eye" {...props} size={16}/>} />
-          {/* <FontAwesome style={styles.icon} name="chevron-right" size={16}/> */}
+          <IconButton 
+            style={styles.icon} 
+            onPress={() => setHidePass(!hidePass)}
+            icon={ hidePass ?
+              props => <FontAwesome name="eye" size={16} {...props} />
+              :
+              props => <Icon name="eye-off" size={16} {...props} />
+            }
+          />
         </View>
 
 
