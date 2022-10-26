@@ -9,20 +9,20 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { auth } from '../../../firebase';
 import LogoPlaneta from '../../assets/logoPlaneta.png';
 
-export default function SignIn() {
-  const [email, setEmail ] = useState('')
+export default function SignIn({navigation}) {
+  const [email, setEmail ] = useState('danilosataide@gmail.com')
   const [password, setPassword] = useState('')
 
   const [input, setInput] = useState('');
   const [hidePass, setHidePass] = useState(true);
 
   const image = { uri: "https://www.construtoraplaneta.com.br/wp-content/uploads/2022/01/fundo-sus-02.jpg" };
-  const navigation  = useNavigation()
+  // const navigation  = useNavigation()
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if(user){
-        navigation.replace("Home")//replace or navigate
+        navigation.replace("DrawerNavigator")//replace or navigate
       }
     })
 

@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity, ActivityIndicator, ImageBackground } from 'react-native' 
 import { useNavigation } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 
-import Logo from '../../../src/assets/logo.png';
+import Logo from '../../../src/assets/logoApp.png';
 import LogoPlaneta from '../../../src/assets/logoPlaneta.png';
 
 export default function Welcome() {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#14750D',
-    marginBottom: '-1rem',
+    marginBottom: '0rem',
   },
   image: {
     flex: 1,

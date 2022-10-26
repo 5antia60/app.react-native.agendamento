@@ -1,8 +1,9 @@
+import * as React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 
-import Home from "./pages/Home";
+import Home from "./pages/Home/dasdas";
 import Info from "./pages/Info";
 import Historico from "./pages/Historico";
 import Reuniao from './pages/Reuniao';

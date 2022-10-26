@@ -1,10 +1,11 @@
+import * as React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function Reuniao({navigation}) {
   return (
     <View style={styles.container}>
       <Text>Página de Nova Reunião</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+      <Button title="Go to Home" onPress={() => navigation.goBack()} />
     </View>
   );
 }

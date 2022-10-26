@@ -8,7 +8,7 @@ export default function App() {
   return (
     <NavigationContainer independent={true}>
       <StatusBar backgroundColor={'transparent'} barStyle={'light-content'} />
-      <Routes />
+        <Routes />
     </NavigationContainer> 
   );
 }
