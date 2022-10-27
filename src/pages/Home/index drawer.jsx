@@ -3,8 +3,7 @@ import React, { useState, useRef } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { auth } from '../../../firebase'
 import { useNavigation } from '@react-navigation/native'
-import { Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons';
-
+d
 import Profile from '../../../src/assets/profile.png';
 // import { Animated } from 'react-native-web';
 const Home = () => {

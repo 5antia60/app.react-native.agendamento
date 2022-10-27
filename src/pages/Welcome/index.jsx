@@ -1,19 +1,30 @@
-import * as React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity, ActivityIndicator, ImageBackground } from 'react-native' 
 import { useNavigation } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
+import { auth } from '../../../firebase';
 
 import Logo from '../../../src/assets/logoApp.png';
 import LogoPlaneta from '../../../src/assets/logoPlaneta.png';
 
-export default function Welcome() {
+export default function Welcome({Stack}) {
   const navigation  = useNavigation()
 
   const image = { uri: "https://www.construtoraplaneta.com.br/wp-content/uploads/2022/01/fundo-sus-02.jpg" };
   // const LogoPlaneta = { uri: "https://www.construtoraplaneta.com.br/wp-content/themes/planeta/imagens/logo.svg" };
   // const Logo = require('../../assets/logo_design.svg')
   
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if(user){
+        navigation.navigate("DrawerNavigator")//replace or navigate
+      }
+    })
+
+    return unsubscribe
+  }, [])
+
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image}>

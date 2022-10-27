@@ -9,7 +9,7 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { auth } from '../../../firebase';
 import LogoPlaneta from '../../assets/logoPlaneta.png';
 
-export default function SignIn({navigation}) {
+export default function SignIn({ navigation: { navigate } }) {
   const [email, setEmail ] = useState('danilosataide@gmail.com')
   const [password, setPassword] = useState('')
 
@@ -22,7 +22,7 @@ export default function SignIn({navigation}) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if(user){
-        navigation.replace("DrawerNavigator")//replace or navigate
+        navigate("DrawerNavigator")//replace or navigate
       }
     })
 

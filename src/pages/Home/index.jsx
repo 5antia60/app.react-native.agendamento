@@ -7,16 +7,27 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Reuniao from '../Reuniao'
 import Routes from '../../routes'
 import { NavigationActions } from 'react-navigation'
+import { color } from 'react-native-reanimated'
 
 //{navigation}
-const Home = () => {
-  const navigation  = useNavigation()
+const Home = ({ HomeStack, navigation }) => {
+  // const navigation  = useNavigation()
 
   const handleSignOut = () => {
     auth  
       .signOut()
       .then(() => {
-        navigation.back()
+        navigation.navigate(
+          'HomeStackScreen', {
+            screen: 'DrawerNavigator',
+            params: {
+              screen: 'Welcome',
+              params: {
+                screen: 'SignIn',
+              },
+            },
+          }
+        );
       })
       .catch(error => alert(error.message))
   }
@@ -34,7 +45,7 @@ const Home = () => {
           style={{ color: 'black'}}
         />  
 
-      <Text>Email: {auth.currentUser?.email}</Text>
+      <Text style={{color:'black'}}>Email: {auth.currentUser?.email}</Text>
       {/* <TouchableOpacity
         onPress={handleSignOut}
         style={styles.button}
