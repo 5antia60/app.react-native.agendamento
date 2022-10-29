@@ -2,8 +2,8 @@ import { deleteDoc, collection, doc, getDoc, setDoc, addDoc } from 'firebase/fir
 import { useState, useEffect } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 // Using DB Reference
-import { db } from '../../../firebase';
-import { database } from '../../../firebase';
+import { db } from '../../firebase';
+import { database } from '../../firebase';
 
 export default function PessoaCRUD() {
   // Storing User Data

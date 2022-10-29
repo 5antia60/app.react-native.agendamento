@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Button, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { auth } from '../../../firebase'
+import { auth } from '../../firebase'
 import { useNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Reuniao from '../Reuniao'
@@ -11,7 +11,7 @@ import { color } from 'react-native-reanimated'
 import { Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
 import Profile from '../../../src/assets/profile.png';
-// const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 //{navigation}
 const Home = ({ HomeStack, navigation }) => {
   // const navigation  = useNavigation()

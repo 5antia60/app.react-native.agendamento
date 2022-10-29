@@ -1,10 +1,11 @@
 import { Dimensions, Image, ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer'
-import Profile from '../../../src/assets/profile.png';
+import Profile from '../../src/assets/profile.png';
 import { IconButton } from '@react-native-material/core';
 import { Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 const {width} = Dimensions.get("screen");
+import { handleSignOut } from '../navigations/StackNavigator';
 
 const CustomDrawer = props => {
     const image = { uri: "https://www.construtoraplaneta.com.br/wp-content/uploads/2022/01/fundo-sus-02.jpg" };
@@ -26,6 +27,7 @@ const CustomDrawer = props => {
 
             <IconButton 
                 style={styles.buttonIcon} 
+                onPress={handleSignOut}
                 icon={ <FontAwesome color="white" name="sign-out" size={18} />}
             ></IconButton>
 

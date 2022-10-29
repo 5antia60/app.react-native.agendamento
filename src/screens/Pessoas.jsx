@@ -1,10 +1,11 @@
-import { Text, View, TextInput, Button, FlatList } from 'react-native';
+import React from 'react';
+import { Text, View, TextInput, Button, FlatList, StyleSheet } from 'react-native';
 import { useState, useEffect } from 'react';
-import { db } from '../../../firebase';
-import { database } from '../../../firebase';
+import { db } from '../../firebase';
+import { database } from '../../firebase';
 import { deleteDoc, query, collection, onSnapshot, doc, getDoc, setDoc, addDoc } from 'firebase/firestore';
 
-export default function Pessoa() {
+export default function Pessoas({navigation}) {
 
   const [idToEdit, setIdToEdit] = useState();
   const [pessoas, setPessoas] = useState([]);
@@ -37,24 +38,25 @@ export default function Pessoa() {
   }
 
   return (
-    <View>
-      <Text style={{ marginTop: '1rem' }}>Nome</Text>
+    <View style={styles.center}>
+      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+      <Text style={{ marginTop: 20 }}>Nome</Text>
       <TextInput
-        style={{ border: '1px solid #000000' }}
+        style={{ border: '1px solid #000000', backgroundColor: 'red', width: '100%' }}
         value={formPessoas.nome}
         onChangeText={nome => setFormPessoas({ ...formPessoas, nome })}
       />
 
-      <Text style={{ marginTop: '1rem' }}>E-mail</Text>
+      <Text style={{ marginTop: 20 }}>E-mail</Text>
       <TextInput
-        style={{ border: '1px solid #000000' }}
+        style={{ border: '1px solid #000000', backgroundColor: 'red', width: '100%'  }}
         value={formPessoas.email}
         onChangeText={email => setFormPessoas({ ...formPessoas, email })}
       />
 
-      <Text style={{ marginTop: '1rem' }}>Celular</Text>
+      <Text style={{ marginTop: 20 }}>Celular</Text>
       <TextInput
-        style={{ border: '1px solid #000000' }}
+        style={{ border: '1px solid #000000', backgroundColor: 'red', width: '100%'  }}
         value={formPessoas.celular}
         onChangeText={celular => setFormPessoas({ ...formPessoas, celular })}
       />
@@ -106,11 +108,11 @@ export default function Pessoa() {
           <Text 
             onPress={() => addToEditMode(item)}  
             style={{
-              width: '6rem',
-              marginBottom: '2rem',
+              width: 50,
+              marginBottom: 10,
               background: 'black',
-              color: 'white',
-              padding: '0.3rem 1rem',
+              color: 'blue',
+              padding: 5,
               textAlign: 'center',
             }}
           >Editar</Text>
@@ -120,3 +122,13 @@ export default function Pessoa() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+  },
+});
+
