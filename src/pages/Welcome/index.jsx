@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#14750D',
-    marginBottom: '0rem',
+    marginBottom: 0,
   },
   image: {
     flex: 1,
@@ -92,8 +92,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
-    paddingStart: '5%',
-    paddingEnd: '5%'
+    paddingStart: 15,
+    paddingEnd: 15
   },
   title: {
     fontSize: 28,
@@ -111,12 +111,12 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 50,
     paddingVertical: 8,
-    width: '60%', 
+    width: 250, 
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    bottom: '15%',
+    bottom: 50,
   },
   buttonText: {
     fontSize: 18,

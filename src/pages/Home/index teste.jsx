@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, Button, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { auth } from '../../../firebase'
 import { useNavigation } from '@react-navigation/native'
@@ -8,10 +8,15 @@ import Reuniao from '../Reuniao'
 import Routes from '../../routes'
 import { NavigationActions } from 'react-navigation'
 import { color } from 'react-native-reanimated'
+import { Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
+import Profile from '../../../src/assets/profile.png';
+// const Tab = createBottomTabNavigator();
 //{navigation}
 const Home = ({ HomeStack, navigation }) => {
   // const navigation  = useNavigation()
+
+  const [currentTabDrawer, setCurrentTabDrawer] = useState("Home")
 
   const handleSignOut = () => {
     auth  
@@ -53,14 +58,59 @@ const Home = ({ HomeStack, navigation }) => {
         <Text style={styles.buttonText}>Sign Out</Text>
       </TouchableOpacity> */}
 
-      <View style={styles.tabBarButtons}>
-
-      </View>
+      {/* <View style={styles.tabBarButtons}>
+          {
+              //Tab Bar Buttons Drawer
+          }
+          {tabButtonDrawer(currentTabDrawer, setCurrentTabDrawer, "Home", 'home')}
+          {tabButtonDrawer(currentTabDrawer, setCurrentTabDrawer, "Pesquisar", 'search')}
+          {tabButtonDrawer(currentTabDrawer, setCurrentTabDrawer, "Configurações", 'cog')}
+          {tabButtonDrawer(currentTabDrawer, setCurrentTabDrawer, "Info", 'info-circle')}
+          {tabButtonDrawer(currentTabDrawer, setCurrentTabDrawer, "Sair", 'sign-out')}
+      </View> */}
     </View>
   )
 }
 
 export default Home
+
+
+const tabButtonDrawer = (currentTabDrawer, setCurrentTabDrawer, title, icon) => {
+  return (
+    <TouchableOpacity onPress={() => {
+      // title == "Sair" ? handleSignOut : setCurrentTabDrawer(title)
+      if( title == "Sair"){
+        handleSignOut
+      } else {
+        setCurrentTabDrawer(title)
+      }
+    }}>
+      <View style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 8,
+        backgroundColor: currentTabDrawer == title ? 'white' : 'transparent',
+        paddingLeft: 15,
+        paddingRight: 50,
+        borderRadius: 10,
+        marginTop: 15
+      }}>
+        <FontAwesome name={icon} size={25} 
+          style={{ color: currentTabDrawer == title ? '#14750D' : 'white' }}
+        />
+
+        <Text style={{
+          fontSize: 15,
+          fontWeight: 'bold',
+          paddingLeft: 15,
+          alignSelf: 'center',
+          color: currentTabDrawer == title ? '#14750D' : 'white'
+        }}>{title}
+        </Text>  
+      </View>
+    </TouchableOpacity>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -92,7 +142,7 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     borderTopRightRadius: 15,
     borderTopLeftRadius: 15,
-    height: 60,
+    height: 70,
 
     shadowColor: "black",
     shadowOffset: {

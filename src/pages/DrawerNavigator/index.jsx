@@ -9,7 +9,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { auth } from '../../../firebase'
 import { IconButton } from '@react-native-material/core';
 import SignIn from "../SignIn";
-import Home from '../Home';
+import Home from '../Home/index teste';
 import Pessoa from '../Pessoa';
 import Reuniao from '../Reuniao';
 import Info from '../Info';
@@ -84,6 +84,7 @@ export default function DrawerNavigator() {
 
         <Drawer.Screen options={{ 
           headerShown: false,
+
           drawerIcon: ({color, size, focused}) => {
             return <FontAwesome name='info-circle' size={18} style={{ color: '#fff'}}/>
           } 
