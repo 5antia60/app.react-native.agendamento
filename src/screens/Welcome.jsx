@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native' 
+import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground, Alert } from 'react-native' 
 import { useNavigation } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
@@ -11,6 +11,25 @@ import LogoPlaneta from '../../src/assets/logoPlaneta.png';
 const Welcome = ({ navigation }) => {
   // const navigation  = useNavigation()
 
+  const handleSignOut = () => {
+    auth  
+      .signOut()
+      .then(() => {
+        navigation.navigate(
+          'HomeStackScreen', {
+            screen: 'DrawerNavigator',
+            params: {
+              screen: 'Welcome',
+              params: {
+                screen: 'SignIn',
+              },
+            },
+          }
+        );
+      })
+      .catch(error => alert(error.message))
+  }
+
   const image = { uri: "https://www.construtoraplaneta.com.br/wp-content/uploads/2022/01/fundo-sus-02.jpg" };
   // const LogoPlaneta = { uri: "https://www.construtoraplaneta.com.br/wp-content/themes/planeta/imagens/logo.svg" };
   // const Logo = require('../../assets/logo_design.svg')
@@ -18,7 +37,20 @@ const Welcome = ({ navigation }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if(user){
-        navigation.navigate("DrawerNavigator")//replace or navigate
+        // Alert.alert(
+        //   "Alert Title",
+        //   "Usuário "+ user.displayName +" logado!",
+        //   [
+        //     {
+        //       text: "Cancel",
+        //       onPress: () => console.log("Cancel Pressed"),
+        //       style: "cancel"
+        //     },
+        //     { text: "OK", onPress: () => console.log("OK Pressed") }
+        //   ]
+        // );
+        // Ir direto para Home
+        // navigation.navigate("DrawerNavigator")//replace or navigate
       }
     })
 
