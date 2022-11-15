@@ -85,7 +85,7 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image style = {{ width: '50%', height: 50, backgroundColor: 'transparent' }} resizeMode='center' source={Logo}/>
+        <Image style = {{ width: '40%', height: 40, backgroundColor: 'transparent' }} resizeMode='center' source={Logo}/>
       </View>
       <View style={styles.content}>
         <Text style={styles.descriptionHoras}>Horas de reuniões na semana</Text>
@@ -128,10 +128,10 @@ const styles = StyleSheet.create({
     width: '90%',
     marginTop: 10,
     borderRadius: 20,
-    marginBottom: 5,
+    marginBottom: 0,
   },
   reuniaoList: {
-    marginTop: 15,
+    marginBottom: 15,
     // height: 120,
   },
   reuniao: {
@@ -227,17 +227,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: 0,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'normal',
-    color: '#14750D',//03484C
+    color: '#03484C',//03484C
   },
   contentHoras: {
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: 5,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#14750D',//14750D
+    color: '#03484C',//14750D
   },
   title: {
     fontSize: 22,

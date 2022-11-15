@@ -1,15 +1,18 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import Constants from 'expo-constants';
-import { SafeAreaView, ScrollView, VirtualizedList, Text, View, TextInput, Button, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView, ScrollView, VirtualizedList, Text, View, TextInput, FlatList, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import { useState, useEffect } from 'react';
 import { IconButton } from '@react-native-material/core';
 import { FontAwesome, Ionicons, Feather } from '@expo/vector-icons';
 import { db } from '../../firebase';
 import { database } from '../../firebase';
 import { deleteDoc, query, collection, onSnapshot, doc, getDoc, setDoc, addDoc } from 'firebase/firestore';
+// import * as MailComposer from 'expo-mail-composer';
 
-export default function Pessoas({navigation}) {
-
+export default function Pessoas() {
+  const navigation = useNavigation();
+  const message = 'Olá fulano!'
   const [idToEdit, setIdToEdit] = useState();
   const [pessoas, setPessoas] = useState([]);
   const [formPessoas, setFormPessoas] = useState({
@@ -17,6 +20,22 @@ export default function Pessoas({navigation}) {
     email: '',
     celular: '',
   });
+
+  function navigateBack() {
+    navigation.goBack()
+  }
+
+  // function sendMail(){
+  //   MailComposer.composeAsync({
+  //     subject: 'Assunto',
+  //     recipients: ['danilosataide@gmail.com'],
+  //     body: message,
+  //   })
+  // }
+
+  function sendWhatsapp(){
+    Linking.openURL(`whatsapp://send?phone=+5515991438000&text=${message}`)
+  }
 
   const myDoc = collection(db, "Pessoa");
 
@@ -40,6 +59,24 @@ export default function Pessoas({navigation}) {
     setFormPessoas(personData);
   }
 
+  const Delete = (value) => {
+    setFormPessoas({
+      nome: '',
+      email: '',
+      celular: '',
+    });
+
+    const myDoc = doc(db, "Pessoa", value)
+
+    deleteDoc(myDoc)
+      .then(() => {
+        alert("Deleted Successfully!")
+      })
+      .catch((error) => {
+        alert(error.message)
+      })
+  }
+
   function Item({ item }) {
     return (
       // <View style={styles.listItem}>
@@ -50,26 +87,48 @@ export default function Pessoas({navigation}) {
           <View style={styles.detailsItem}>
             <Text style={styles.nome}>{item.nome}</Text>
             <View style={styles.details}>
+              {/* <IconButton 
+                style={styles.icon} 
+                onPress={() => addToEditMode(item)}  
+                icon=
+                { 
+                  <FontAwesome name="whatsapp" size={16} color="#48C857" />
+                }
+              /> */}
               <IconButton 
                 style={styles.icon} 
                 onPress={() => addToEditMode(item)}  
                 icon=
                 { 
-                  <Feather name="edit" size={16} color="black" />
+                  <Feather name="edit" size={16} color="#2196F3" />
                 }
               />
               <IconButton 
                 style={styles.icon} 
-                onPress={() => ''}
+                onPress={() => {
+                  Delete(
+                    item.id
+                  )
+                }}
                 icon=
                 { 
-                  <Ionicons name="trash" size={16} color="black" />
+                  <Ionicons name="trash" size={16} color="#FF0000" />
                 }
               />
             </View>
           </View>
-          <Text style={styles.email}>{item.email}</Text>
-          <Text style={styles.celular}>{item.celular}</Text>
+          <Text style={styles.email}>E-mail: {item.email}</Text>
+          <Text style={styles.celular}>Celular: {item.celular}</Text>
+          <TouchableOpacity 
+            style={styles.buttonWhatsapp} 
+            onPress={sendWhatsapp}
+          >
+            <FontAwesome style={styles.buttonWhatsappIcon} name="whatsapp" size={16}/>
+            <Text style={styles.buttonWhatsappText}>
+              Whatsapp
+            </Text>
+          </TouchableOpacity>
+          
         </View>
       </View>
     );
@@ -80,18 +139,22 @@ export default function Pessoas({navigation}) {
       <View style={styles.header}>
         <IconButton 
           style={styles.icon} 
-          onPress={() => navigation.navigate('Home')}
+          onPress={navigateBack}
           icon=
           { 
-            <Ionicons name="chevron-back-sharp" size={16} color="black" />
+            <Ionicons name="chevron-back-sharp" size={16} color="#14750D" />
           }
         />
-        <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      </View>
-      <ScrollView style={{width:"100%"}}>
-        <View style={styles.content}>
+        <View>
           <Text style={styles.title}>Cadastro de Pessoas</Text>
         </View>
+        {/* <Text style={fontSize= 16}>Voltar</Text> */}
+        {/* <Button title="Go to Home" onPress={() => navigation.navigate('Home')} /> */}
+      </View>
+      {/* <ScrollView style={{width:"100%"}}> */}
+        {/* <View style={styles.content}>
+          <Text style={styles.title}>Cadastro de Pessoas</Text>
+        </View> */}
         <Text style={styles.label}>Nome</Text>
         <TextInput
           style={styles.input}
@@ -160,26 +223,27 @@ export default function Pessoas({navigation}) {
           renderItem={({ item }) => Item({item})}
           // keyExtractor={item => String(item.item)}
         />
-      </ScrollView>
+      {/* </ScrollView> */}
     </SafeAreaView >
   );
 }
 
 const styles = StyleSheet.create({
   containerForm: {
+    minWidth: 300,
     flex: 1,
     paddingTop: Constants.statusBarHeight + 20,
     marginBottom: 100,
     backgroundColor: '#fff',
     flexDirection: "column",
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
+    // borderTopLeftRadius: 40,
+    // borderTopRightRadius: 40,
     paddingStart: 20,
     paddingEnd: 20,
     paddingTop: 28,
     justifyContent: "center",
     alignItems: "flex-start",
-    textAlign: "center",
+    textAlign: "left",
   },
   pessoasForm: {
     paddingTop: Constants.statusBarHeight + 20,
@@ -208,7 +272,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    marginTop: 20,
+    // marginTop: 20,
     color: '#14750D',
     fontWeight: 'bold',
     alignSelf: 'flex-start'
@@ -253,7 +317,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 14,
     borderRadius: 20,
-    marginBottom: 5,
+    marginBottom: 0,
   },
   itemList: {
     marginTop: 15,
@@ -285,13 +349,37 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 15,
     color: "gray",
-    fontWeight: 'bold'
+    fontWeight: 'normal'
   },  
   celular: {
     marginLeft: 0,
     marginBottom: 10,
     fontSize: 15,
-    fontWeight: 'bold',
+    fontWeight: 'normal',
     color: "gray"
+  },
+  buttonWhatsapp: {
+    backgroundColor: '#48C857',
+    width: '100%',
+    borderRadius: 50,
+    paddingVertical: 8,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+  },
+  buttonWhatsappText: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+    paddingEnd: 5
+  },
+  buttonWhatsappIcon: {
+    color: "#fff",
+    paddingStart: 5,
+    alignSelf: 'center',
+    paddingRight: 10,
   }
 });

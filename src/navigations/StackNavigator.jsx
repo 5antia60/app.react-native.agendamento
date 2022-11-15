@@ -46,7 +46,7 @@ const AuthStackNavigator = () => {
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen options={{ headerShown: false }} name="Home" component={Pessoas} />
+      <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
       <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );

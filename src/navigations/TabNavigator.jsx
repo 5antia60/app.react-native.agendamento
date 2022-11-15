@@ -29,7 +29,7 @@ const BottomTabNavigator = () => {
         borderRadius: 0,
         borderTopRightRadius: 15,
         borderTopLeftRadius: 15,
-        height: 60,
+        height: 50,
 
         shadowColor: "black",
         shadowOffset: {
@@ -102,8 +102,8 @@ const BottomTabNavigator = () => {
 
 const styles = StyleSheet.create({
 	iconTabRound: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderRadius: 30,
     marginBottom: 40,
     flexDirection: 'row',
