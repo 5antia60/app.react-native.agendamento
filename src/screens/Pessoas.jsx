@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     minWidth: 300,
     flex: 1,
     paddingTop: Constants.statusBarHeight + 20,
-    marginBottom: 100,
+    // marginBottom: 80,
     backgroundColor: '#fff',
     flexDirection: "column",
     // borderTopLeftRadius: 40,

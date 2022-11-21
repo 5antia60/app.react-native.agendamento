@@ -9,7 +9,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@expo/webpack-config": "^0.17.0",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.10.14",
+    "@mui/material": "^5.10.14",
+    "@mui/styled-engine-sc": "^5.10.14",
+    "@mui/x-date-pickers": "^5.0.8",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-material/core": "^1.3.7",
     "@react-navigation/bottom-tabs": "^6.4.0",
@@ -19,6 +26,7 @@
     "@react-navigation/stack": "^6.3.3",
     "@rneui/base": "^4.0.0-rc.6",
     "@rneui/themed": "^4.0.0-rc.6",
+    "dayjs": "^1.11.6",
     "expo": "~46.0.13",
     "expo-constants": "^13.2.4",
     "expo-linear-gradient": "^11.4.0",
@@ -37,7 +45,8 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.7",
     "react-navigation": "^4.4.4",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

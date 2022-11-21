@@ -10,7 +10,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={'transparent'} barStyle={'light-content'} />
-        <AuthStackNavigator />
+        <DrawerNavigator />
       {/* <MainStackNavigator /> */}
       {/* <BottomTabNavigator /> */}
       {/* <DrawerNavigator /> */}
