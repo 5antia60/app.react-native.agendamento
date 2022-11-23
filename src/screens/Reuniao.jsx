@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 import { SafeAreaView, ScrollView, VirtualizedList, Text, View, TextInput, FlatList, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import { useState, useEffect } from 'react';
 import { IconButton } from '@react-native-material/core';
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import { Ionicons, AntDesign, Entypo } from '@expo/vector-icons';
 import { db } from '../../firebase';
 import { database } from '../../firebase';
 import { deleteDoc, query, collection, onSnapshot, doc, getDoc, setDoc, addDoc } from 'firebase/firestore';
@@ -156,62 +156,7 @@ export default function Reuniao() {
         {/* <View style={styles.content}>
           <Text style={styles.title}>Cadastro de Pessoas</Text>
         </View> */}
-
-        {/* Single */}
-        <SearchableDropdown
-          onItemSelect={(item) => {
-            console.log(item)
-            // const items = this.convidados;
-            // items.push(item)
-            this.setConvidados(items)
-            console.log(convidados)
-
-            // item => setConvidados({ ...convidados, item })
-            // this.setConvidados(items);
-          }}
-          containerStyle={{ padding: 5 }}
-          onRemoveItem={(item, index) => {
-            const itemsc = this.convidados.filter((sitem) => sitem.id !== item.id);
-            // this.setState({ selectedItems: items });
-            this.setConvidados(itemsc);
-          }}
-          itemStyle={{
-            padding: 10,
-            marginTop: 2,
-            backgroundColor: '#fff',
-            borderColor: '#f3f3f3',
-            borderWidth: 1,
-            borderRadius: 5,
-          }}
-          itemTextStyle={{ color: '#222' }}
-          itemsContainerStyle={{ maxHeight: 140 }}
-          items={items}
-          defaultIndex={2}
-          resetValue={false}
-          textInputProps={
-            {
-              placeholder: "placeholder",
-              underlineColorAndroid: "transparent",
-              style: {
-                  height: 50,
-                  padding: 12,
-                  borderWidth: 1,
-                  backgroundColor: '#fff',
-                  borderColor: '#f3f3f3',
-                  borderRadius: 5,
-                  
-              },
-              onTextChange: text => alert(text)
-            }
-          }
-          listProps={
-            {
-              nestedScrollEnabled: true,
-            }
-          }
-        />
-
-        {/* <Text style={styles.label}>Assunto</Text>
+        <Text style={styles.label}>Assunto</Text>
         <TextInput
           style={styles.input}
           value={formReuniao.assunto}
@@ -230,7 +175,77 @@ export default function Reuniao() {
           style={styles.input}
           value={formReuniao.data}
           onChangeText={data => setFormReuniao({ ...formReuniao, data })}
-        /> */}
+        />
+
+        <View style={styles.detailsPessoas}>
+          <Text style={styles.pessoasLabel}>Pessoas</Text>
+          <View style={styles.buttonNewPessoa}>
+            <IconButton 
+              style={styles.icon} 
+              onPress={''}
+              icon=
+              { 
+                <Entypo name="circle-with-plus" size={18} color="black" />
+              }
+            />
+          </View>
+        </View>
+        {/* Single */}
+        <SearchableDropdown
+          onItemSelect={(item) => {
+            console.log(item)
+            // const items = this.convidados;
+            // items.push(item)
+            this.setConvidados(items)
+            console.log(convidados)
+
+            // item => setConvidados({ ...convidados, item })
+            // this.setConvidados(items);
+          }}
+          containerStyle={{ 
+            marginTop: 0,
+            borderRadius: 20,
+            backgroundColor: '#f3f3f3',
+          }}
+          onRemoveItem={(item, index) => {
+            const itemsc = this.convidados.filter((sitem) => sitem.id !== item.id);
+            // this.setState({ selectedItems: items });
+            this.setConvidados(itemsc);
+          }}
+          itemStyle={{
+            padding: 10,
+            marginTop: 2,
+            backgroundColor: '#fff',
+            borderColor: '#f3f3f3',
+            borderWidth: 1,
+          }}
+          itemTextStyle={{ color: '#222' }}
+          itemsContainerStyle={{ maxHeight: 140 }}
+          items={items}
+          defaultIndex={2}
+          resetValue={false}
+          textInputProps={
+            {
+              placeholder: "Selecione um convidado",
+              underlineColorAndroid: "transparent",
+              style: {
+                  height: 50,
+                  padding: 12,
+                  borderWidth: 1,
+                  backgroundColor: '#f3f3f3',
+                  borderColor: '#f3f3f3',
+                  borderRadius: 10,
+                  
+              },
+              onTextChange: text => console.log(text)
+            }
+          }
+          listProps={
+            {
+              nestedScrollEnabled: true,
+            }
+          }
+        />
 
         {/* <SearchableDropdown
           onTextChange={(text) => console.log(text)}
@@ -283,18 +298,6 @@ export default function Reuniao() {
           // To remove the underline from the android input
         /> */}
 
-          
-
-        <TouchableOpacity 
-          style={styles.button}
-          onPress={async () => {
-            ''
-          }}
-        >
-          <Text style={styles.buttonText}
-          
-          >{ 'Salvar Reunião'}</Text>
-        </TouchableOpacity>
         <View style={styles.flatListView}>
           <ScrollView>
           <FlatList style={styles.flatList}
@@ -307,6 +310,18 @@ export default function Reuniao() {
           </Text>
           </ScrollView>
         </View>
+
+        
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={async () => {
+            ''
+          }}
+        >
+          <Text style={styles.buttonText}
+          
+          >{ 'Salvar Reunião'}</Text>
+        </TouchableOpacity>
         </ScrollView>
       {/* </ScrollView> */}
     </SafeAreaView >
@@ -457,5 +472,21 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "gray",
     fontWeight: 'normal'
-  }
+  },
+  detailsPessoas: {
+    marginTop: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  pessoasLabel: {
+    fontSize: 18,
+    color: '#14750D',
+    fontWeight: 'bold'
+  }, 
+  buttonNewPessoa: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+  },  
 });
