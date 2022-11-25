@@ -8,6 +8,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -20,6 +23,7 @@
     "@mui/x-date-pickers": "^5.0.8",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-material/core": "^1.3.7",
+    "@react-native-picker/picker": "^2.4.8",
     "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/drawer": "^6.5.0",
     "@react-navigation/native": "^6.0.13",

@@ -1,6 +1,6 @@
 import React from "react";
 import Constants from 'expo-constants';
-import { View, Button, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native";
 import { Feather, AntDesign,  } from '@expo/vector-icons';
 import Logo from '../../src/assets/logoApp.png';
 
@@ -105,7 +105,7 @@ const Home = ({ navigation }) => {
       <FlatList style={styles.flatList}
         data={state.data}
         renderItem={({ item }) => Item({item})}
-        keyExtractor={item => String(item.item)}
+        keyExtractor={(item, index) => String(item?.item || index)}
       />
       <Text style={styles.titleTotal}>
         Total de <Text style={styles.titleTotalBold}>0 reuniões</Text>.
