@@ -5,12 +5,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AuthStackNavigator } from './src/navigations/StackNavigator';
 import Pessoas from './src/screens/Pessoas';
 import DrawerNavigator from './src/navigations/DrawerNavigator';
+import Detalhes from './src/screens/DetailsReuniao';
 
 const App = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={'transparent'} barStyle={'light-content'} />
-        <AuthStackNavigator />
+        <Detalhes />
+        {/*<AuthStackNavigator />*/}
       {/* <MainStackNavigator /> */}
       {/* <BottomTabNavigator /> */}
       {/* <DrawerNavigator /> */}
