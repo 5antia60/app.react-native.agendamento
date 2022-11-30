@@ -9,3 +9,13 @@
 200709	Guilherme Itiro Wada <br>
 200379	Murillo dos Santos Daniel <br>
 200791	Santiago José Delgado <br>
+
+## Site usado para aceitar os horários da reunião:
+LINK: https://agendamento-de-reuniao-app.web.app/UNbOty0HMFQRF18FD1Eq/iBJS0lznybf0hcyP4KYD
+
+
+`link`/`id da reuniao`/`id do convidado`
+
+Repo: https://github.com/5antia60/web.ionic.agendamento
+
+
