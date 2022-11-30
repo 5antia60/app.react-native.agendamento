@@ -14,11 +14,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={'transparent'} barStyle={'light-content'} />
-        <Detalhes />
-        {/*<AuthStackNavigator />*/}
-      {/* <MainStackNavigator /> */}
-      {/* <BottomTabNavigator /> */}
-      {/* <DrawerNavigator /> */}
+      {/*
+      <AuthStackNavigator />
+      */}
       <Reuniao/>
       {/*
       <BottomTabNavigator />
