@@ -6,6 +6,9 @@ import { AuthStackNavigator } from './src/navigations/StackNavigator';
 import Pessoas from './src/screens/Pessoas';
 import DrawerNavigator from './src/navigations/DrawerNavigator';
 import Detalhes from './src/screens/DetailsReuniao';
+import BottomTabNavigator from "./src/navigations/TabNavigator";
+import Reuniao from './src/screens/Reuniao';
+import { MainStackNavigator } from "./src/navigations/StackNavigator";
 
 const App = () => {
   return (
@@ -16,6 +19,12 @@ const App = () => {
       {/* <MainStackNavigator /> */}
       {/* <BottomTabNavigator /> */}
       {/* <DrawerNavigator /> */}
+      <Reuniao/>
+      {/*
+      <BottomTabNavigator />
+      <MainStackNavigator />
+      <DrawerNavigator />
+      */}
     </NavigationContainer>
   );
 }

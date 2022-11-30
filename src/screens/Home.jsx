@@ -1,7 +1,7 @@
 import React from "react";
 import Constants from 'expo-constants';
-import { View, Button, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native";
-import { Feather, FontAwesome } from '@expo/vector-icons';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native";
+import { Feather, AntDesign,  } from '@expo/vector-icons';
 import Logo from '../../src/assets/logoApp.png';
 
 const Home = ({ navigation }) => {
@@ -65,7 +65,7 @@ const Home = ({ navigation }) => {
             <Text style={styles.assunto}>Líderes do Grupo B</Text>
             <Text style={styles.participantes}>11 Participantes</Text>
             <View style={styles.detailsStatus}>
-              <FontAwesome name="circle" size={12} color="green"></FontAwesome>
+              <AntDesign name="checkcircle" size={12} color="green"></AntDesign>
               <Text style={styles.status}>Confirmado</Text>
             </View>
           </View>
@@ -105,7 +105,7 @@ const Home = ({ navigation }) => {
       <FlatList style={styles.flatList}
         data={state.data}
         renderItem={({ item }) => Item({item})}
-        keyExtractor={item => String(item.item)}
+        keyExtractor={(item, index) => String(item?.item || index)}
       />
       <Text style={styles.titleTotal}>
         Total de <Text style={styles.titleTotalBold}>0 reuniões</Text>.
