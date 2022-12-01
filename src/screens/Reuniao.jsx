@@ -1,3 +1,5 @@
+//#region Imports
+
 import React, { useEffect, useState } from 'react';
 import Constants from 'expo-constants';
 import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -8,10 +10,16 @@ import { IconButton } from '@react-native-material/core';
 import { AntDesign, Entypo, Ionicons } from '@expo/vector-icons';
 import { db } from '../../firebase';
 
+//#endregion
+
 export default function Reuniao() {
+
+  //#region Properties
+
   const navigation = useNavigation();
   const [pessoas, setPessoas] = useState([]);
   const [convidados, setConvidados] = useState([]);
+  const [auxTime, setAuxTime] = useState('');
   const [formReuniao, setFormReuniao] = useState({
     assunto: '',
     duracao: '',
@@ -20,23 +28,57 @@ export default function Reuniao() {
     horarios: []
   });
 
-  function navigateBack() {
-    navigation.goBack()
-  }
+  //#endregion
+
+  //#region LifeCycle Events
 
   useEffect(() => {
     onSnapshot(query(collection(db, "Pessoa")), (querySnapshot) => {
       const result = [];
-      querySnapshot.forEach((doc) => result.push({ ...doc.data(), id: doc.id }));
+      querySnapshot.forEach((doc) => result.push({...doc.data(), id: doc.id}));
       setPessoas(result);
     });
   }, []);
 
+  //#endregion
+
+  //#region Methods
+
+  const resetForm = () => {
+    setConvidados([]);
+    setAuxTime('');
+    setFormReuniao({
+      assunto: '',
+      duracao: '',
+      data: '',
+      convidados: [],
+      horarios: []
+    });
+  }
+
   const postMeeting = (meeting) => {
     addDoc(collection(db, "Reuniao"), meeting)
-      .then(() => alert("Reuniao Salva!"))
+      .then(() => {
+        alert("Reuniao Salva!");
+        resetForm();
+      })
       .catch((error) => alert(error.message));
   }
+
+  const addTime = (value) => {
+    if (value === '')
+      return alert('Digite um horario');
+
+    setFormReuniao({...formReuniao, horarios: [...formReuniao.horarios, value]});
+    setAuxTime('');
+  }
+
+  const navigateBack = () => {
+    navigation.goBack();
+    resetForm();
+  }
+
+  //#endregion
 
   function Item({item}) {
     return (
@@ -107,15 +149,26 @@ export default function Reuniao() {
           onChangeText={data => setFormReuniao({...formReuniao, data})}
         />
 
+        <Text style={styles.label}>Horários</Text>
+        <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+          <TextInput
+            style={{...styles.input, width: '80%'}}
+            value={auxTime}
+            onChangeText={value => setAuxTime(value)}
+          />
+          <IconButton
+            style={styles.icon}
+            onPress={() => addTime(auxTime)}
+            icon={<Entypo name="circle-with-plus" size={18} color="black"/>}
+          />
+        </View>
+
+        <View style={styles.timesArea}>
+          { formReuniao.horarios.map((horario, index) => <Text style={styles.timeLabel} key={index}>{ horario }</Text>) }
+        </View>
+
         <View style={styles.detailsPessoas}>
           <Text style={styles.pessoasLabel}>Pessoas</Text>
-          <View style={styles.buttonNewPessoa}>
-            <IconButton
-              style={styles.icon}
-              onPress={''}
-              icon={<Entypo name="circle-with-plus" size={18} color="black"/>}
-            />
-          </View>
         </View>
 
         <Picker
@@ -127,8 +180,15 @@ export default function Reuniao() {
             borderColor: 'rgb(243, 243, 243)',
             borderRadius: '10px',
           }}
+          selectedValue={0}
           placeholder="Selecione um convidado"
-          onValueChange={(itemValue) => setConvidados([ ...convidados, JSON.parse(itemValue) ])}>
+          onValueChange={(itemValue, itemIndex) => {
+            if (itemValue != 0) {
+              setConvidados([...convidados, JSON.parse(itemValue)]);
+              pessoas.splice(itemIndex, 1);
+              setPessoas(pessoas);
+            }
+          }}>
           {
             pessoas.map(pessoa => <Picker.Item
               style={{
@@ -140,8 +200,19 @@ export default function Reuniao() {
               }}
               key={pessoa.id}
               label={pessoa.nome}
-              value={JSON.stringify(pessoa)} /> )
+              value={JSON.stringify(pessoa)}/>)
           }
+          <Picker.Item
+            style={{
+              padding: 10,
+              marginTop: 2,
+              backgroundColor: '#fff',
+              borderColor: '#f3f3f3',
+              borderWidth: 1,
+            }}
+            key={-1}
+            label={'Selecione a pessoa'}
+            value={0}/>
         </Picker>
 
         <View style={styles.flatListView}>
@@ -152,7 +223,7 @@ export default function Reuniao() {
                       keyExtractor={item => item.id}
             />
             <Text style={styles.titleTotal}>
-              Total de <Text style={styles.titleTotalBold}>{ convidados.length } convidados</Text>.
+              Total de <Text style={styles.titleTotalBold}>{convidados.length} convidados</Text>.
             </Text>
           </ScrollView>
         </View>
@@ -160,7 +231,7 @@ export default function Reuniao() {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => postMeeting({ ...formReuniao, convidados })}>
+          onPress={() => postMeeting({...formReuniao, convidados})}>
           <Text style={styles.buttonText}>
             Salvar Reunião
           </Text>
@@ -171,6 +242,21 @@ export default function Reuniao() {
 }
 
 const styles = StyleSheet.create({
+  timesArea: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: '0.5rem',
+    marginBottom: '1rem',
+  },
+  timeLabel: {
+    backgroundColor: '#1b7714',
+    color: '#ffffff',
+    padding: '0.2rem',
+    borderRadius: '1rem',
+    marginRight: '0.3rem',
+    marginBottom: '0.3rem',
+  },
   containerForm: {
     minWidth: 300,
     flex: 1,
