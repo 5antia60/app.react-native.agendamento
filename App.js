@@ -3,12 +3,13 @@ import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import BottomTabNavigator from "./src/navigations/TabNavigator";
 import Reuniao from './src/screens/Reuniao';
-import { MainStackNavigator } from "./src/navigations/StackNavigator";
+import DetailsReuniao from './src/screens/DetailsReuniao';
+import { AuthStackNavigator, MainStackNavigator } from "./src/navigations/StackNavigator";
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Reuniao/>
+      <AuthStackNavigator />
       {/*
       <BottomTabNavigator />
       <MainStackNavigator />
