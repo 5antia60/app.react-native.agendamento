@@ -63,7 +63,7 @@ const Home = ({ navigation }) => {
       
           <TouchableOpacity
             style={styles.detailsButton}
-            onPress={() => {}}
+            onPress={() => navigation.navigate('DetailsReuniao')}
           >
             <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
             <Feather name="arrow-right" size={16} color="#03484C"></Feather>

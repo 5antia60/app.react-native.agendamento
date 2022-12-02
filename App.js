@@ -4,13 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { AuthStackNavigator, MainStackNavigator } from './src/navigations/StackNavigator';
 import Home from './src/screens/Home';
+import DetailsReuniao from './src/screens/DetailsReuniao';
 
 const App = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={'transparent'} barStyle={'light-content'} />
       
-      <Home />
+      <AuthStackNavigator />
      
     </NavigationContainer>
   );

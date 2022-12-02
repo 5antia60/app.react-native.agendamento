@@ -104,8 +104,6 @@ const DetailsReuniao = ({navigation}) => {
       <View style={styles.centralizar}>
           <Text style={{fontSize:15}}>Assunto: XXXXXXX</Text>
       </View>
-      
-      <br/><br/>
 
       <View style={styles.header}>
           <AntDesign name="checkcircle" size={15} color="green" />
@@ -116,14 +114,11 @@ const DetailsReuniao = ({navigation}) => {
           <Text style={{fontSize:12}}>  Aguardando Reunião</Text>
       </View>
 
-      <br/>
-
       <View style={styles.header}>
           <AntDesign name="clockcircleo" size={15} color="green" />
           <Text style={{fontSize:15, fontWeight:"bold"}}> Duração: XX:XX</Text> 
       </View>
 
-      <br/>
 
       <View>
           <Text style={{fontSize:15, fontWeight:"bold"}}>X Convidados</Text>
@@ -136,8 +131,6 @@ const DetailsReuniao = ({navigation}) => {
           data={pessoas}
           renderItem={({ item }) => Item({item})}
       />
-
-      <br/>
 
       <View style={styles.centralizar}>
         <Text style={{fontSize:15}}> Selecione um horário:</Text>
@@ -155,7 +148,6 @@ const DetailsReuniao = ({navigation}) => {
         <TextInput style={styles.input} value={text} onChangeText={onChangeText}></TextInput>
       </View>
 
-      <br/> 
       {/*Botão Enviar */}
       <View style={styles.centralizar}>
         <Pressable onPress={() => Linking.openURL('mailto:support@example.com?subject=SendMail&body=Assunto da Reunião')} >
@@ -190,7 +182,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
   },
   input:{
-    width: '300px',
+    width: '100%',
     borderWidth: 1,
     padding: 5
   },

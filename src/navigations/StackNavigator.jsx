@@ -11,6 +11,7 @@ import About from "../screens/About";
 import Contact from "../screens/Contact";
 import Pessoas from "../screens/Pessoas";
 import Reuniao from "../screens/Reuniao";
+import DetailsReuniao from "../screens/DetailsReuniao";
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,7 @@ const MainStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+      <Stack.Screen options={{ headerShown: false }} name="DetailsReuniao" component={DetailsReuniao} />
       <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );
