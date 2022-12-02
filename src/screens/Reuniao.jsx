@@ -24,6 +24,9 @@ export default function Reuniao() {
     assunto: '',
     duracao: '',
     data: '',
+    horario: '',
+    link: '',
+    status_confirmado: '',
     convidados: [],
     horarios: []
   });

@@ -1,50 +1,24 @@
 import React from "react";
 import Constants from 'expo-constants';
+import { useState } from "react";
+import { useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native";
 import { Feather, AntDesign,  } from '@expo/vector-icons';
 import Logo from '../../src/assets/logoApp.png';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 const Home = ({ navigation }) => {
-  state = {
-    data:[
-      {
-        "name": "Miyah Myles",
-        "email": "miyah.myles@gmail.com",
-        "position": "Data Entry Clerk",
-        "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-    },
-    {
-        "name": "June Cha",
-        "email": "june.cha@gmail.com",
-        "position": "Sales Manager",
-        "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/44.jpg"
-    },
-    {
-        "name": "Iida Niskanen",
-        "email": "iida.niskanen@gmail.com",
-        "position": "Sales Manager",
-        "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/68.jpg"
-    },
-    {
-        "name": "Renee Sims",
-        "email": "renee.sims@gmail.com",
-        "position": "Medical Assistant",
-        "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/65.jpg"
-    },
-    {
-        "name": "Jonathan Nu\u00f1ez",
-        "email": "jonathan.nu\u00f1ez@gmail.com",
-        "position": "Clerical",
-        "photo": "https:\/\/randomuser.me\/api\/portraits\/men\/43.jpg"
-    },
-    {
-        "name": "Sasha Ho",
-        "email": "sasha.ho@gmail.com",
-        "position": "Administrative Assistant",
-        "photo": "https:\/\/images.pexels.com\/photos\/415829\/pexels-photo-415829.jpeg?h=350&auto=compress&cs=tinysrgb"
-    },
-    ]
-  }
+  const [reunioes, setReunioes] = useState([]);
+
+  useEffect(() => {
+    const q = query(collection(db, "Reuniao"));
+    onSnapshot(q, (querySnapshot) => {
+      const result = [];
+      querySnapshot.forEach((doc) => result.push({ ...doc.data(), id: doc.id }));
+      setReunioes(result);
+    });
+  }, []);
 
   function Item({ item }) {
     return (
@@ -55,18 +29,35 @@ const Home = ({ navigation }) => {
         <View style={styles.reuniao}>
           <View style={styles.divisao}>
             <View style={styles.detailsReuniao}>
-              <Text style={styles.data}>Dia 30 de outubro de 2022</Text>
+              <Text style={styles.data}>{item.data}</Text>
               <View style={styles.detailsHoras}>
                 <Feather name="clock" size={16} color="#03484C"></Feather>
-                <Text style={styles.horas}>15:00</Text>
+                <Text style={styles.horas}>
+                  {
+                    item.horario != '' ? item.horario : "A decidir"
+                  }
+                </Text>
               </View>
             </View>
 
-            <Text style={styles.assunto}>Líderes do Grupo B</Text>
-            <Text style={styles.participantes}>11 Participantes</Text>
+            <Text style={styles.assunto}>Assunto: {item.assunto}</Text>
+            <Text style={styles.participantes}>{item.convidados.length} Participantes</Text>
             <View style={styles.detailsStatus}>
-              <AntDesign name="checkcircle" size={12} color="green"></AntDesign>
-              <Text style={styles.status}>Confirmado</Text>
+              {
+                item.status_confirmado == 1 
+                ?
+                <>
+                <AntDesign name="checkcircle" size={12} color="green"></AntDesign>
+                <Text style={styles.status}>Confirmada</Text>
+                </>
+                : 
+                <>
+                <AntDesign name="exclamationcircle" size={12} color="#ffd400"></AntDesign>
+                <Text style={styles.status}>Aguardando</Text>
+                </>
+              }
+
+              
             </View>
           </View>
       
@@ -89,21 +80,17 @@ const Home = ({ navigation }) => {
       </View>
       <View style={styles.content}>
         <Text style={styles.descriptionHoras}>Horas de reuniões na semana</Text>
-        <Text style={styles.contentHoras}>12:50:00 horas</Text>
+        <Text style={styles.contentHoras}>--:--:-- horas</Text>
         <Text style={styles.title}>Minhas reuniões</Text>
       </View>
       {/* <Text>This is the home screen</Text>
-      <Button
-        title="Go to About Screen"
-        onPress={() => navigation.navigate("About")} // We added an onPress event which would navigate to the About screen
-      />
       <Button
         title="Sign Out"
         onPress={handleSignOut}
         style={{ color: 'black'}}
       />   */}
       <FlatList style={styles.flatList}
-        data={state.data}
+        data={reunioes}
         renderItem={({ item }) => Item({item})}
         keyExtractor={(item, index) => String(item?.item || index)}
       />
