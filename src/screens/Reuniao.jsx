@@ -8,7 +8,8 @@ import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from '@react-navigation/native';
 import { IconButton } from '@react-native-material/core';
 import { AntDesign, Entypo, Ionicons } from '@expo/vector-icons';
-import { db } from '../../firebase';
+import { db, responseEmailUrl } from '../../firebase';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 //#endregion
 
@@ -20,6 +21,7 @@ export default function Reuniao() {
   const [pessoas, setPessoas] = useState([]);
   const [convidados, setConvidados] = useState([]);
   const [auxTime, setAuxTime] = useState('');
+  const [meetingId, setMeetingId] = useState(0);
   const [formReuniao, setFormReuniao] = useState({
     assunto: '',
     duracao: '',
@@ -45,7 +47,6 @@ export default function Reuniao() {
   //#region Methods
 
   const resetForm = () => {
-    setConvidados([]);
     setAuxTime('');
     setFormReuniao({
       assunto: '',
@@ -56,13 +57,36 @@ export default function Reuniao() {
     });
   }
 
-  const postMeeting = (meeting) => {
+  const showLinks = (assunto) => {
+    onSnapshot(query(collection(db, "Reuniao")), (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().assunto === assunto)
+          setMeetingId(doc.id);
+      });
+    });
+  }
+
+  const copyInviteLink = (invitedId) => {
+    if (!meetingId)
+      return alert('Salve a reuniao para receber o link do convite');
+
+    Clipboard.setString(
+      responseEmailUrl
+        .replace('{meetingId}', meetingId)
+        .replace('{invitedId}', invitedId)
+    );
+    alert("Link do convidado copiado para area de transferencia...");
+  }
+
+  const postMeeting = async (meeting) => {
     addDoc(collection(db, "Reuniao"), meeting)
       .then(() => {
         alert("Reuniao Salva!");
         resetForm();
       })
       .catch((error) => alert(error.message));
+
+    showLinks(meeting.assunto);
   }
 
   const addTime = (value) => {
@@ -89,11 +113,7 @@ export default function Reuniao() {
             <View style={styles.details}>
               <IconButton
                 style={styles.icon}
-                onPress={() => {
-                  Delete(
-                    item.id
-                  )
-                }}
+                onPress={() => copyInviteLink(item.id)}
                 icon=
                   {
                     <AntDesign name="deleteuser" size={16} color="black"/>
@@ -265,6 +285,7 @@ const styles = StyleSheet.create({
     paddingStart: 20,
     paddingEnd: 20,
     paddingTop: 28,
+    paddingBottom: 70,
     justifyContent: "center",
     alignItems: "flex-start",
     textAlign: "left",
