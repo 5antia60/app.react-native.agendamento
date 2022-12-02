@@ -40,7 +40,6 @@ const SignIn = ({ navigation: { navigate } }) => {
   }
 
   const handleLogin = () => {
-    console.log(password)
     auth
     .signInWithEmailAndPassword(email, password)
     .then(userCredentials => {
