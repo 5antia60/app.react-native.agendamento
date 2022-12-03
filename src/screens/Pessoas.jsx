@@ -12,7 +12,6 @@ import { deleteDoc, query, collection, onSnapshot, doc, getDoc, setDoc, addDoc }
 
 export default function Pessoas() {
   const navigation = useNavigation();
-  const message = 'Olá fulano!'
   const [idToEdit, setIdToEdit] = useState();
   const [pessoas, setPessoas] = useState([]);
   const [formPessoas, setFormPessoas] = useState({
@@ -32,9 +31,17 @@ export default function Pessoas() {
   //     body: message,
   //   })
   // }
-
-  function sendWhatsapp(){
-    Linking.openURL(`whatsapp://send?phone=+5515991438000&text=${message}`)
+  function sendWhatsapp(id){
+    var cel;
+    var mes;
+    pessoas.forEach(function(pessoa) {
+      if(pessoa.id == id){
+        console.log(pessoa)
+        cel = pessoa.celular
+        mes = 'Olá '+pessoa.nome+'!'
+      }
+    });
+    Linking.openURL(`whatsapp://send?phone=+55${cel}&text=${mes}`)
   }
 
   const myDoc = collection(db, "Pessoa");
@@ -79,6 +86,7 @@ export default function Pessoas() {
 
   function Item({ item }) {
     return (
+      
       // <View style={styles.listItem}>
       //   <Text style={styles.titleList}>{item.name}</Text>
       // </View>
@@ -121,7 +129,11 @@ export default function Pessoas() {
           <Text style={styles.celular}>Celular: {item.celular}</Text>
           <TouchableOpacity 
             style={styles.buttonWhatsapp} 
-            onPress={sendWhatsapp}
+            onPress={() => {
+              sendWhatsapp(
+                item.id
+              )
+            }}
           >
             <FontAwesome style={styles.buttonWhatsappIcon} name="whatsapp" size={16}/>
             <Text style={styles.buttonWhatsappText}>

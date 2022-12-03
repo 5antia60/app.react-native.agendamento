@@ -2,7 +2,7 @@ import React from "react";
 import Constants from 'expo-constants';
 import { useState } from "react";
 import { useEffect } from "react";
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, Button } from "react-native";
 import { Feather, AntDesign,  } from '@expo/vector-icons';
 import Logo from '../../src/assets/logoApp.png';
 import { collection, onSnapshot, query } from 'firebase/firestore';
@@ -63,7 +63,12 @@ const Home = ({ navigation }) => {
       
           <TouchableOpacity
             style={styles.detailsButton}
-            onPress={() => navigation.navigate('DetailsReuniao')}
+            onPress={() => {
+              navigation.navigate('DetailsReuniao', {
+                id: item.id,
+                otherParam: 'anything you want here',
+              });
+            }}
           >
             <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
             <Feather name="arrow-right" size={16} color="#03484C"></Feather>
@@ -83,19 +88,13 @@ const Home = ({ navigation }) => {
         <Text style={styles.contentHoras}>--:--:-- horas</Text>
         <Text style={styles.title}>Minhas reuniões</Text>
       </View>
-      {/* <Text>This is the home screen</Text>
-      <Button
-        title="Sign Out"
-        onPress={handleSignOut}
-        style={{ color: 'black'}}
-      />   */}
       <FlatList style={styles.flatList}
         data={reunioes}
         renderItem={({ item }) => Item({item})}
         keyExtractor={(item, index) => String(item?.item || index)}
       />
       <Text style={styles.titleTotal}>
-        Total de <Text style={styles.titleTotalBold}>0 reuniões</Text>.
+        Total de <Text style={styles.titleTotalBold}>{reunioes.length} reuniões</Text>.
       </Text>
     </View>
   );

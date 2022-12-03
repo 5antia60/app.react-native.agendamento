@@ -9,7 +9,9 @@ import { useNavigation } from '@react-navigation/native';
 import { IconButton } from '@react-native-material/core';
 import { AntDesign, Entypo, Ionicons } from '@expo/vector-icons';
 import { db, responseEmailUrl } from '../../firebase';
-import Clipboard from '@react-native-clipboard/clipboard';
+// import Clipboard from '@react-native-clipboard/clipboard';
+import * as Clipboard from 'expo-clipboard';
+
 
 //#endregion
 
