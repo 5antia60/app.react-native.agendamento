@@ -11,7 +11,7 @@ import { database } from '../../firebase';
 import { deleteDoc, query, collection, onSnapshot, doc, getDoc, setDoc, addDoc } from 'firebase/firestore';
 
 const DetailsReuniao = ({ route, navigation }) => {
-  // const { id, otherParam } = route.params;
+  const { id, otherParam } = route.params;
   const [pessoas, setPessoas] = useState([]);
   const myDoc = collection(db, "Pessoa");
   const [text, onChangeText] = React.useState("");
@@ -162,6 +162,7 @@ const DetailsReuniao = ({ route, navigation }) => {
 
         <View>
             <Text style={styles.title}>Dia X de Novembro de 2022</Text>
+            <Text style={styles.title}>{id}</Text>
         </View>
 
       </View>

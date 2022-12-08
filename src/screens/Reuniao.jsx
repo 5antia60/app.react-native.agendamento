@@ -198,12 +198,12 @@ export default function Reuniao() {
 
         <Picker
           style={{
-            height: '50px',
-            padding: '12px',
+            height: 180,
+            padding: 5,
             borderWidth: '1px',
             backgroundColor: 'rgb(243, 243, 243)',
             borderColor: 'rgb(243, 243, 243)',
-            borderRadius: '10px',
+            borderRadius: 20,
           }}
           selectedValue={0}
           placeholder="Selecione um convidado"
@@ -271,16 +271,16 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: '0.5rem',
-    marginBottom: '1rem',
+    marginTop: 5,
+    marginBottom: 10,
   },
   timeLabel: {
     backgroundColor: '#1b7714',
     color: '#ffffff',
-    padding: '0.2rem',
-    borderRadius: '1rem',
-    marginRight: '0.3rem',
-    marginBottom: '0.3rem',
+    padding: 2,
+    borderRadius: 5,
+    marginRight: 2,
+    marginBottom: 2,
   },
   containerForm: {
     minWidth: 300,
@@ -291,6 +291,7 @@ const styles = StyleSheet.create({
     paddingEnd: 20,
     paddingTop: 28,
     paddingBottom: 70,
+    marginBottom: 70,     
     justifyContent: "center",
     alignItems: "flex-start",
     textAlign: "left",
